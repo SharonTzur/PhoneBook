@@ -1,0 +1,47 @@
+.contact-row{
+    .contact-details{
+        padding: 40px 20px;
+    }
+    .message{
+        background-color:#f4f4f4;
+        padding:15px;
+        border-radius: 10px;
+        width:auto;
+        margin-bottom:20px;
+        position:relative;
+        &.to{
+             &:before,&:after{
+                top: 10px;
+                left: -20px;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                pointer-events: none;
+                border-color: rgba(136, 183, 213, 0);
+                border-right-color: #f4f4f4;
+                border-width: 12px;
+                margin-top: 0;
+                position: absolute;
+            }
+        }
+        &.from{
+            text-align:right;
+            background-color: #d2f3d2;
+            &:before,&:after{
+                top: 10px;
+                right: -20px;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                pointer-events: none;
+                border-color: rgba(136, 183, 213, 0);
+                border-left-color: #d2f3d2;
+                border-width: 12px;
+                margin-top: 0;
+                position: absolute;
+            }
+        }
+    }
+}

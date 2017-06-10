@@ -1,0 +1,30 @@
+<div *ngIf="contact" class="row contact-row align-items-center">
+  <div class="col-md-8">
+    <div class="row d-flex contact-details align-items-center">
+      <div class="col-sm-6 col-md-5 col-lg-3">
+        <img [src]="contact.picture" alt="" class="rounded-circle">
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <h4>
+          {{contact.first_name+' '+contact.last_name}}</h4>
+        <div>
+          {{contact.email}}
+        </div>
+        <div>
+          {{contact.phone}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 action-list ">
+    <button type="button" class="btn" [ngClass]="{'btn-danger':contact.favourite, 'btn-success':!contact.favourite}"
+    (click)="contact.favourite=!contact.favourite">
+      {{contact.favourite?'Remove from favourite':'Add to favourites'}}
+    </button>
+  </div>
+  <div class="col-md-12 messages-list">
+    <h4>Last conversation </h4>
+    <div class="message" *ngFor="let message of contact.messages" [ngClass]="message.type">
+      {{message.text}}
+    </div>
+  </div>
+</div>

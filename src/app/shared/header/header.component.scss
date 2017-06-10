@@ -1,0 +1,18 @@
+.header-row{
+    background-color: lightblue;
+    .header-logo{
+            padding: 20px 40px;   
+    }
+    .header-links{
+        display: flex;
+        .menu-item{
+            list-style: none;
+            padding: 20px 40px;
+            a{
+            &.active{
+                font-weight:bold;
+            }
+            }
+        }
+    }
+}

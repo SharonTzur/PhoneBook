@@ -1,0 +1,10 @@
+.contact-card{
+    margin-top:25px;
+    &:hover{
+        border:1px solid black;
+        cursor:pointer;
+    }
+    &.favourite{
+        background-color: lightgreen;
+    }
+}

@@ -1,0 +1,8 @@
+<div class="row  d-flex justify-content-around ">
+  <div *ngFor="let contact of contacts" (click)="goToProfile(contact.id)" class="card contact-card" [ngClass]="{'favourite':contact.favourite}">
+    <div class="card-block">
+      <h4 class="card-title">{{contact.first_name+' '+contact.last_name}}</h4>
+      <p class="card-text">{{contact.phone}}</p>
+    </div>
+  </div>
+</div>
