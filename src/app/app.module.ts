@@ -10,6 +10,7 @@ import { AddContactComponent } from './components/add-contact/add-contact.compon
 import { AppRoutingModule } from 'app/app.routes';
 import { ContactService } from 'app/services/contact.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

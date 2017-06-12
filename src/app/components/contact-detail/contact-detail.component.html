@@ -20,6 +20,10 @@
     (click)="contact.favourite=!contact.favourite">
       {{contact.favourite?'Remove from favourite':'Add to favourites'}}
     </button>
+    <button type="button" class="btn btn-danger" 
+    (click)="deleteContact(contact.id)">
+     Delete Contact
+    </button>
   </div>
   <div class="col-md-12 messages-list">
     <h4>Last conversation </h4>

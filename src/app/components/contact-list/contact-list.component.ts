@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from 'app/services/contact.service';
 import { Router } from '@angular/router';
 
@@ -7,14 +7,16 @@ import { Router } from '@angular/router';
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss']
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, OnDestroy {
 
-  public contacts: any[] = [];
+  contacts: any[] = [];
+  contactsSubscription;
   constructor(private contactService: ContactService, private router: Router) { }
 
   ngOnInit() {
-    this.contactService.getContacts().subscribe((contact) => {
-      this.contacts.push(contact);
+    this.contactsSubscription = this.contactService.getContacts().subscribe((contacts) => {
+      // this.contacts.push(contact);
+      this.contacts = contacts;
     })
   }
 
@@ -22,4 +24,7 @@ export class ContactListComponent implements OnInit {
     this.router.navigate(['/contact', id]);
   }
 
+  ngOnDestroy() {
+    this.contactsSubscription.unsubscribe();
+  }
 }

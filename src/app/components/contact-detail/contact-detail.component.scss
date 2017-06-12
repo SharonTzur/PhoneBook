@@ -9,7 +9,7 @@
         width:auto;
         margin-bottom:20px;
         position:relative;
-        &.to{
+        &.to, &.from{
              &:before,&:after{
                 top: 10px;
                 left: -20px;
@@ -29,18 +29,10 @@
             text-align:right;
             background-color: #d2f3d2;
             &:before,&:after{
-                top: 10px;
+                left:auto;
                 right: -20px;
-                border: solid transparent;
-                content: " ";
-                height: 0;
-                width: 0;
-                pointer-events: none;
                 border-color: rgba(136, 183, 213, 0);
                 border-left-color: #d2f3d2;
-                border-width: 12px;
-                margin-top: 0;
-                position: absolute;
             }
         }
     }
