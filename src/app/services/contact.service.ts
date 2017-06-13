@@ -7,39 +7,44 @@ import 'rxjs/Rx';
 @Injectable()
 export class ContactService {
 
-  constructor(private http: Http) { }
+  contacts;
+
+  constructor(private http: Http) {
+    this.contacts = CONTACTS;
+  }
 
   getContacts(): Observable<any[]> {
-    // return Observable.from(CONTACTS);
-    return this.http.get('assets/mock-contacts.json')
-    .map((res) => {
-      return res.json().contacts;
-    });
+    return Observable.from(this.contacts);
+    // return this.http.get('assets/mock-contacts.json')
+    //   .map((res) => {
+    //     return res.json().contacts;
+    //   });
   }
 
   getContactsSlowly(): Observable<any[]> {
     return Observable
       .interval(200)
       .timeInterval()
-      .take(CONTACTS.length)
-      .map(({ value }) => CONTACTS[value]);
+      .take(this.contacts.length)
+      .map(({ value }) => this.contacts[value]);
   }
 
   saveContact({ firstName, lastName, email, phone }): Observable<any> {
-    CONTACTS.push({ first_name: firstName, last_name: lastName, email, phone, id: CONTACTS.length });
-    return this.getContact(CONTACTS.length - 1);
+    this.contacts.push({ first_name: firstName, last_name: lastName, email, phone, id: this.contacts.length + 1 });
+    return this.getContact(this.contacts.length);
   }
 
   getContact(id): Observable<any> {
-    // return Observable.from(CONTACTS).filter(contact => contact.id === id).take(1);
-    return this.http.get('assets/mock-contacts.json')
-    .flatMap((res) => {
-      return res.json().contacts.filter((contact) => contact.id === id)
-    })
-    .take(1);
+    return Observable.from(this.contacts).filter(contact => contact['id'] === id).take(1);
+    // return this.http.get('assets/mock-contacts.json')
+    //   .flatMap((res) => {
+    //     return res.json().contacts.filter((contact) => contact.id === id)
+    //   })
+    //   .take(1);
   }
 
   deleteContact(contactId) {
-    // CONTACTS = CONTACTS.filter(item => item.id !== contactId);
+    this.contacts = this.contacts.filter(item => item.id !== contactId);
+    return this.getContacts();
   }
 }
